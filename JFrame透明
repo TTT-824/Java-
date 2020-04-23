@@ -1,0 +1,43 @@
+package no3;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Transparent extends JFrame {
+    private static JFrame jFrame;
+    private static JButton jButton;
+
+
+    public static void main(String[] args) {
+        jFrame = new JFrame();
+        jFrame.setUndecorated(true);
+        jFrame.setOpacity(0.20f);
+        jFrame.setSize(200,140);
+        jFrame.setLayout(null);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setVisible(true);
+
+        ImageIcon icon = new ImageIcon("D:\\TTT\\Library\\setting_1.png");
+        jButton = new JButton("",icon);
+        jButton.setBounds(170,0,30,30);
+        jButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        jButton.setBackground(new Color(0,0,0,0));
+//        jButton.setBackground();
+        jButton.setOpaque(true);
+        jButton.setBorder(null);
+
+        Container con = jFrame.getContentPane();
+        con.add(jButton);
+    }
+}
+
+提示：如果需要控件不透明
+      思路1：双层结构
+      思路2：鼠标绘制
