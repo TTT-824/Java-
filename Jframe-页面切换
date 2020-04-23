@@ -1,6 +1,9 @@
 package no3;
 
+import com.sun.awt.AWTUtilities;
+
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +16,8 @@ public class Home1 extends JFrame {
     private static JButton myJbutton2;
     private static JLabel myJlabel;
     private static JLabel myJlabel2;
+    private static Thread myThread;
+
 
     public static void main(String[] args) {
 //        创建实例
@@ -26,6 +31,16 @@ public class Home1 extends JFrame {
         myJframe.setVisible(true);
 //        设置退出事件
         myJframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        设置不可改变大小
+        myJframe.setResizable(false);
+
+
+//        设置透明度
+//        myJframe.setOpacity(0.01f);
+//        设置窗口无边框
+//        myJframe.setUndecorated(true);
+
+
 //        获取JFrame的container
         Container con = myJframe.getContentPane();
 //        创建按钮
@@ -35,25 +50,32 @@ public class Home1 extends JFrame {
         con.add(myJbutton);
 //        为jframe添加一个文本用来区别页面切换
         myJlabel = new JLabel();
-        myJlabel.setBounds(0,0,100,50);
+        myJlabel.setBounds(0, 0, 100, 50);
         myJlabel.setText("这是文本1");
         con.add(myJlabel);
+
+
+//        设置窗口透明度
+//        com.sun.awt.AWTUtilities.setWindowOpacity(myJframe, 0.5f);
+//        com.sun.awt.AWTUtilities.setWindowOpacity(this, 0.6f);
+
+
     }
 
-//        设置按钮方法
+    //    设置按钮方法
     protected static void Set_Jbutton(JButton but) {
-        if (but == myJbutton){
+        if (but == myJbutton) {
             but.setText("打开");
-            but.setBounds(0, 468, 81, 50);
+            but.setBounds(0, 478, 81, 50);
             but.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     Jbutoon_action(but);
                 }
             });
-        }else {
+        } else {
             but.setText("关闭");
-            but.setBounds(0, 468, 81, 50);
+            but.setBounds(0, 478, 81, 50);
             but.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -64,10 +86,15 @@ public class Home1 extends JFrame {
 
     }
 
-//        点击打开事件
-    protected static void Jbutoon_action(JButton but){
+    //    点击打开事件
+    protected static void Jbutoon_action(JButton but) {
 //        设置jframe1不可见
         myJframe.setVisible(false);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         myJframe2 = new JFrame();
 //        设置布局
         myJframe2.setLayout(null);
@@ -78,6 +105,8 @@ public class Home1 extends JFrame {
         myJframe2.setVisible(true);
 //        设置退出事件
         myJframe2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        设置不可改变大小
+        myJframe2.setResizable(false);
 //        获取JFrame的container
         Container con2 = myJframe2.getContentPane();
 //        创建按钮
@@ -88,15 +117,20 @@ public class Home1 extends JFrame {
 
 //        为jframe添加一个文本用来区别页面切换
         myJlabel2 = new JLabel();
-        myJlabel2.setBounds(0,0,100,50);
+        myJlabel2.setBounds(0, 0, 100, 50);
         myJlabel2.setText("这是文本2");
         con2.add(myJlabel2);
     }
 
-//        点击关闭事件
-    protected static void Jbutoon_action2(JButton but){
+    //    点击关闭事件
+    protected static void Jbutoon_action2(JButton but) {
 //        设置jframe2不可见
         myJframe2.setVisible(false);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 //        设置jframe可见
         myJframe.setVisible(true);
     }
