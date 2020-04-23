@@ -1,0 +1,33 @@
+package ttt.com;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class JFrameBackground extends JFrame {
+    private static JFrame jFrame;
+    private static JButton jButton;
+    public static void main(String[] args) {
+        jFrame = new JFrame (  );
+        jFrame.setUndecorated ( true );
+        jFrame.setSize ( 200,200 );
+        jFrame.setLocationRelativeTo ( null );
+        jFrame.setLayout (null);
+        jFrame.setBackground ( new Color ( 0,0,0,20 ) );
+
+
+        jButton = new JButton ( "-" );
+        jButton.setBounds ( 0,0,40,40 );
+        jButton.addActionListener ( new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit ( 0 );
+            }
+        } );
+
+        Container con = jFrame.getContentPane ();
+        con.add ( jButton );
+        jFrame.setVisible ( true );
+    }
+}
