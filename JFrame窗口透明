@@ -40,4 +40,5 @@ public class Transparent extends JFrame {
 
 提示：如果需要控件不透明
       思路1：双层结构
-      思路2：鼠标绘制
+      思路2：去除系统样式 然后new Color（r,g,b,a）
+      a是apla值0-255
