@@ -1,0 +1,40 @@
+class Main {
+    public static void main(String[] args) {
+        Object[][] rowData = { { "Hello", "World" } ,{"1","2"},{ "Hello", "World" } ,{"1","2"},{ "Hello", "World" } ,{"1","2"}};
+        Object[] columnNames = {"A", "B"};
+
+        JTable table;
+        DefaultTableModel model;
+
+        model = new DefaultTableModel(rowData,columnNames);
+        table = new JTable();
+        table.setModel(model);
+        table.getTableHeader().setVisible(false);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setPreferredSize(new Dimension(0, 0));
+        table.getTableHeader().setDefaultRenderer(renderer);
+
+        JButton add = new JButton("Add");
+
+        add.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                for (Object temp:rowData
+                     ) {
+                    model.addRow((Object[]) temp);
+                }
+            }
+        });
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container c = f.getContentPane();
+        c.setLayout(new BorderLayout());
+        c.add(add, BorderLayout.SOUTH);
+        c.add(new JScrollPane(table), BorderLayout.CENTER);
+
+        f.pack();
+
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+    }
+}
