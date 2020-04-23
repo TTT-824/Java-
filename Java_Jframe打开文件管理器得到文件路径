@@ -1,0 +1,85 @@
+package no3;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+public abstract class SelectDocument extends JFrame{
+    private static JButton jbut1;
+    private static JFrame jFrame;
+    private static TextArea textArea;
+//    private JButton jbut1;
+    public static void main(String[] args) {
+//        创建窗口
+        jFrame = new JFrame (  );
+//        设置窗口大小
+        jFrame.setSize ( 400,400 );
+//        设置显示位置
+        jFrame.setLocationRelativeTo ( null );
+//        设置关闭
+        jFrame.setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
+//        设置可见
+        jFrame.setVisible ( true );
+//        设置布局管理器
+        jFrame.setLayout ( null );
+//        创建一个button
+        jbut1 = new JButton ( "打开文件" );
+//        设置大小和显示位置
+        jbut1.setBounds ( 0,310,400,50 );
+//        设置横向显示位置
+        jbut1.setHorizontalAlignment ( SwingConstants.CENTER );
+//        设置纵向显示位置
+        jbut1.setVerticalAlignment ( SwingConstants.CENTER );
+//        sctioncommand动作命令
+        jbut1.setActionCommand ("open");
+//        设置监听器
+        jbut1.addActionListener ( new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mactionPerformed(jbut1);
+            }
+        } );
+//        获取container
+        Container jFrame_jp =  jFrame.getContentPane ();
+//        将button添加到container
+        jFrame_jp.add ( jbut1 );
+
+    }
+
+//        button点击事件方法传入一个 button 参数
+    protected static void mactionPerformed(JButton jb){
+//        判断接收到的命令是否正确
+        if (jb.getActionCommand ().equals ( "open" )){
+//            new一个文件管理器空间
+            JFileChooser jfc = new JFileChooser (  );
+            jfc.setFileSelectionMode(1);
+//            显示创建的文件管理器
+            jfc.showOpenDialog(null);
+//            获取选择的文件
+            File f =  jfc.getSelectedFile();
+//            获取选择的文件的路径
+//            File f = jfc.getCurrentDirectory();
+            String s = f.getAbsolutePath();
+//            将路径一对话框的形式显示出来
+//            JOptionPane.showMessageDialog(null, s, "标题",JOptionPane.WARNING_MESSAGE);
+            System.out.println ("文件路径："+s);
+//            创建一个textare
+            textArea = new TextArea();
+//            获取jframe的container
+            Container jFrame_this =  jFrame.getContentPane ();
+//            获取cntainer宽度
+            int wd = jFrame_this.getWidth();
+//            设置textAreaa位置和大小
+            textArea.setBounds(0,0,wd,300);
+//            设置自动换行
+//            textArea.setLineWarp(true);
+//            向textarea添加获取到的路径
+            textArea.append(s);
+//            将textarea添加到面板
+            jFrame_this.add(textArea);
+
+        }
+    }
+}
