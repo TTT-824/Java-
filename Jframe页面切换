@@ -1,0 +1,103 @@
+package no3;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Home1 extends JFrame {
+    //    声明全局控件
+    private static JFrame myJframe;
+    private static JFrame myJframe2;
+    private static JButton myJbutton;
+    private static JButton myJbutton2;
+    private static JLabel myJlabel;
+    private static JLabel myJlabel2;
+
+    public static void main(String[] args) {
+//        创建实例
+        myJframe = new JFrame();
+//        设置布局
+        myJframe.setLayout(null);
+//        设置大小和显示位置
+        myJframe.setSize(900, 556);
+        myJframe.setLocationRelativeTo(null);
+//        设置显示可见
+        myJframe.setVisible(true);
+//        设置退出事件
+        myJframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        获取JFrame的container
+        Container con = myJframe.getContentPane();
+//        创建按钮
+        myJbutton = new JButton();
+        Set_Jbutton(myJbutton);
+//        将按钮添加到con
+        con.add(myJbutton);
+//        为jframe添加一个文本用来区别页面切换
+        myJlabel = new JLabel();
+        myJlabel.setBounds(0,0,100,50);
+        myJlabel.setText("这是文本1");
+        con.add(myJlabel);
+    }
+
+//        设置按钮方法
+    protected static void Set_Jbutton(JButton but) {
+        if (but == myJbutton){
+            but.setText("打开");
+            but.setBounds(0, 468, 81, 50);
+            but.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Jbutoon_action(but);
+                }
+            });
+        }else {
+            but.setText("关闭");
+            but.setBounds(0, 468, 81, 50);
+            but.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Jbutoon_action2(but);
+                }
+            });
+        }
+
+    }
+
+//        点击打开事件
+    protected static void Jbutoon_action(JButton but){
+//        设置jframe1不可见
+        myJframe.setVisible(false);
+        myJframe2 = new JFrame();
+//        设置布局
+        myJframe2.setLayout(null);
+//        设置大小和显示位置
+        myJframe2.setSize(900, 556);
+        myJframe2.setLocationRelativeTo(null);
+//        设置显示可见
+        myJframe2.setVisible(true);
+//        设置退出事件
+        myJframe2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        获取JFrame的container
+        Container con2 = myJframe2.getContentPane();
+//        创建按钮
+        myJbutton2 = new JButton();
+        Set_Jbutton(myJbutton2);
+//        将按钮添加到con
+        con2.add(myJbutton2);
+
+//        为jframe添加一个文本用来区别页面切换
+        myJlabel2 = new JLabel();
+        myJlabel2.setBounds(0,0,100,50);
+        myJlabel2.setText("这是文本2");
+        con2.add(myJlabel2);
+    }
+
+//        点击关闭事件
+    protected static void Jbutoon_action2(JButton but){
+//        设置jframe2不可见
+        myJframe2.setVisible(false);
+//        设置jframe可见
+        myJframe.setVisible(true);
+    }
+}
