@@ -1,0 +1,34 @@
+package ttt.com;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+/*
+* 反序列化
+* */
+public class Not_Serialization {
+    public static void main(String[] args) {
+//        创建一个空的即将要序列化的类对象
+        Emploey my_emp = null;
+        try {
+//            创建文件输入流
+            FileInputStream finput = new FileInputStream ( "D:\\java\\Less_Demo\\employee.ser" );
+//            创建反序列化对象
+            ObjectInputStream obinput = new ObjectInputStream ( finput );
+//            反序列化
+            my_emp = (Emploey) obinput.readObject ();
+        }catch (IOException | ClassNotFoundException i){
+            System.out.println (i);
+        }
+//       输出一下看看数据对不对
+        for (Object temp:my_emp.username)
+        {
+            System.out.println (temp);
+        }
+        for (Object temp1:my_emp.password)
+        {
+            System.out.println (temp1);
+        }
+    }
+}
