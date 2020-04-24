@@ -1,0 +1,20 @@
+package ttt.com;
+
+import it.sauronsoftware.jave.Encoder;
+import it.sauronsoftware.jave.EncoderException;
+import it.sauronsoftware.jave.MultimediaInfo;
+
+import java.io.File;
+/*
+* jar下载地址   http://www.java2s.com/Code/JarDownload/jave/jave-1.0.2.jar.zip
+* */
+public class Get_Music_Long {
+    public static void main(String[] args) throws EncoderException {
+        File source =new File("D:\\TTT\\宣传曲.mp3");
+        Encoder encoder = new Encoder ();
+        MultimediaInfo m = encoder.getInfo(source);
+        long ls = m.getDuration();
+        long duration = ls / 1000;
+        System.out.println("此视频时长为:"+ls/60000+"分"+(ls/1000-ls/60000*60)+"秒！");
+    }
+}
