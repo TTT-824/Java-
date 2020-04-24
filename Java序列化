@@ -1,0 +1,32 @@
+package ttt.com;
+/*
+* 序列化
+* */
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+public class Serialization {
+    public static void main(String[] args) {
+//        首先给要序列化的类赋值
+        Emploey my_emp = new Emploey();
+        my_emp.username = new String[]{"18398932805","19938461258"};
+        my_emp.password = new String[]{"wyy18398932805","wyy19938461258"};
+
+//        创建文件输出流
+        try {
+            FileOutputStream fileout = new FileOutputStream ( "D:\\java\\Less_Demo\\employee.ser" );
+            ObjectOutputStream my_out = new ObjectOutputStream ( fileout );
+//            序列化
+            my_out.writeObject ( my_emp );
+//            关闭序列化
+            my_out.close ();
+//            关闭文件输出流
+            fileout.close ();
+            System.out.printf ("D:\\java\\Less_Demo\\employee.ser");
+        } catch (IOException e) {
+            e.printStackTrace ();
+        }
+    }
+}
